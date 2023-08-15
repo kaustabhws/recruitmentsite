@@ -12,16 +12,16 @@ import Contact from './components/Contact/Contact';
 function App() {
   return (
     <Router>
-      <div className="App">
         <NavBar />
-      </div>
-      <Routes>
-        <Route exact path='/' element={<Home />} />
-        <Route exact path='/signup' element={<Signup />} />
-        <Route exact path='/login' element={<Login />} />
-        <Route exact path='/pricing' element={<Pricing />} />
-        <Route exact path='/contact' element={<Contact />} />
-      </Routes>
+        <div className="App">
+          <Routes>
+            <Route exact path='/' element={<Home />} />
+            <Route exact path='/signup' element={<Signup />} />
+            <Route exact path='/login' element={<Login />} />
+            <Route exact path='/pricing' element={<Pricing />} />
+            <Route exact path='/contact' element={<Contact />} />
+          </Routes>
+        </div>
       <div className="App">
         <Footer />
       </div>
