@@ -1,12 +1,16 @@
 import logo from '../../assets/logo.png';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import './NavBar.css';
 
-function Navbar(props) {
-  const [searchBar, toggleSearchBar] = useState(false);
+function NavBar(props) {
   const [mobileMenu, toggleMobileMenu] = useState(false);
+
+  let location = useLocation()
+  useEffect(() => {
+    // console.log(location.pathname)
+  }, [location]);
 
   useEffect(() => {
     if (mobileMenu) {
@@ -21,8 +25,6 @@ function Navbar(props) {
   };
 
   var navClassNames = classNames('nav', {
-    search: searchBar,
-    'no-search': !searchBar,
     'mobile-nav': mobileMenu,
   });
 
@@ -33,7 +35,7 @@ function Navbar(props) {
   return (
     <>
       <div className="nav-wrapper">
-        <nav className="navbar">
+        <nav className="nav-bar">
           <img src={logo} alt="logo" />
           <div
             className={mobileMenuClassNames}
@@ -45,22 +47,22 @@ function Navbar(props) {
             <span className="bar"></span>
           </div>
           <ul className={navClassNames}>
-            <li className="nav-item">
+            <li className={`nav-item ${location.pathname === "/" ? "nav-link-item": ""}`}>
               <Link to="/" onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>
-            <li className="nav-item">
+            <li className={`nav-item ${location.pathname === "/pricing" ? "nav-link-item": ""}`}>
               <Link to="/pricing" onClick={closeMobileMenu}>
                 Pricing
               </Link>
             </li>
-            <li className="nav-item">
+            <li className={`nav-item ${location.pathname === "/signup" ? "nav-link-item": ""} ${location.pathname === "/login" ? "nav-link-item": ""}`}>
               <Link to="/signup" onClick={closeMobileMenu}>
                 Login/SignUp
               </Link>
             </li>
-            <li className="nav-item">
+            <li className={`nav-item ${location.pathname === "/contact" ? "nav-link-item": ""}`}>
               <Link to="/contact" onClick={closeMobileMenu}>
                 Contact Us
               </Link>
@@ -72,4 +74,4 @@ function Navbar(props) {
   );
 }
 
-export default Navbar;
+export default NavBar;
